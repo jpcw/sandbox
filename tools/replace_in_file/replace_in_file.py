@@ -62,12 +62,12 @@ def extract_patterns(lines, sep):
     return (tuple(line.split(sep)) for line in lines)
 
 
-def get_config(filename):
+def get_config(filename, section):
     """Returns configuration."""
 
     parser = SafeConfigParser()
     parser.read(filename)
-    return dict(parser.items('options'))
+    return dict(parser.items(section))
 
 
 def main(settings):
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     if not os.path.isfile(args.config):
         sys.exit("%s not found" % args.config)
 
-    cfg_options = get_config(args.config)
+    cfg_options = get_config(args.config, 'options')
     settings.update(cfg_options)
 
     for key in settings:
