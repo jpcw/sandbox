@@ -23,7 +23,7 @@ def search_and_replace_lines(search, replace, lines):
 def extract_patterns(lines, sep):
     """Returns list of splited(sep) lines."""
 
-    return (tuple(line.split(sep)) for line in lines)
+    return [tuple(line.split(sep)) for line in lines]
 
 
 def main(settings):
