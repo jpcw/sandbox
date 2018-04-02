@@ -48,6 +48,7 @@ def write_lines_to_file(filename, text, mode='w'):
     with open(filename, mode) as myfile:
         if isinstance(text, list):
             text = '\n'.join(text)
+            text += '\n'
         return myfile.writelines(text)
 
 
@@ -60,7 +61,7 @@ def get_section_config(filename, section, ret_as_dict=True):
     parser = SafeConfigParser()
     parser.read(filename)
 
-    if not section in parser.sections():
+    if section not in parser.sections():
         raise Exception("%s not found in %s" % (section, filename))
 
     if ret_as_dict:
